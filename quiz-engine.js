@@ -284,7 +284,7 @@ function showResults() {
   const shareText   = `He hecho el test en indecisos.org y coincido un ${winPct}% con ${winName}. ¿Y tú? 🗳️`;
   const shareUrl    = 'https://indecisos.org';
   const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(shareText + ' ' + shareUrl)}`;
-  const twitterUrl  = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(shareUrl)}`;
+  const twitterUrl  = `https://x.com/intent/tweet?text=${encodeURIComponent(shareText + ' ' + shareUrl)}`;
 
   const shareDiv = document.createElement('div');
   shareDiv.className = 'share-actions';
