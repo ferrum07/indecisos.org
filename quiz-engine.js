@@ -281,8 +281,8 @@ function showResults() {
   if (breakdown) rlist.insertAdjacentElement('afterend', breakdown);
 
   // Botones compartir
-  const shareText   = `He hecho el test en indecisos.es y coincido un ${winPct}% con ${winName}. ¿Y tú? 🗳️`;
-  const shareUrl    = 'https://indecisos.es';
+  const shareText   = `He hecho el test en indecisos.org y coincido un ${winPct}% con ${winName}. ¿Y tú? 🗳️`;
+  const shareUrl    = 'https://indecisos.org';
   const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(shareText + ' ' + shareUrl)}`;
   const twitterUrl  = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(shareUrl)}`;
 
@@ -309,7 +309,7 @@ function showResults() {
   donateDiv.innerHTML = `
     <span class="donation-icon">☕</span>
     <div class="donation-title">¿Te ha sido útil? Apoya el proyecto</div>
-    <p class="donation-desc">indecisos.es es un proyecto independiente, sin publicidad ni financiación política. Con tu aportación ayudas a mantenerlo.</p>
+    <p class="donation-desc">indecisos.org es un proyecto independiente, sin publicidad ni financiación política. Con tu aportación ayudas a mantenerlo.</p>
     <div class="donation-buttons">
       <a href="https://www.paypal.com/donate/?hosted_button_id=XXXXXXXXXXXXXXX" target="_blank" rel="noopener" class="btn-donate btn-donate--paypal">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M7.076 21.337H2.47a.641.641 0 0 1-.633-.74L4.944.901C5.026.382 5.474 0 5.998 0h7.46c2.57 0 4.578.543 5.69 1.81 1.01 1.15 1.304 2.42 1.012 4.287-.023.143-.047.288-.077.437-.983 5.05-4.349 6.797-8.647 6.797h-2.19c-.524 0-.968.382-1.05.9l-1.12 7.106zm14.146-14.42a3.35 3.35 0 0 0-.607-.541c-.013.076-.026.175-.041.254-.93 4.778-4.005 7.201-9.138 7.201h-2.19a.563.563 0 0 0-.556.479l-1.187 7.527h-.506l-.24 1.516a.56.56 0 0 0 .554.647h3.882c.46 0 .85-.334.922-.788.06-.26.76-4.852.816-5.09a.932.932 0 0 1 .923-.788h.58c3.76 0 6.705-1.528 7.565-5.946.36-1.847.174-3.388-.777-4.471z"/></svg>
@@ -396,7 +396,7 @@ function buildResultCanvas(lastSorted, lastTotals, lastMaxScore) {
     rowY+=ROW_H;
   });
   ctx.fillStyle='#B0A89E'; ctx.font='12px Inter,sans-serif'; ctx.textAlign='center';
-  ctx.fillText('indecisos.es · Orientación de voto sin etiquetas',W/2,H-18);
+  ctx.fillText('indecisos.org · Orientación de voto sin etiquetas',W/2,H-18);
   return canvas;
 }
 
@@ -460,7 +460,7 @@ function buildStoriesCanvas(lastSorted, lastTotals, lastMaxScore) {
 
   // Footer
   ctx.fillStyle='#B0A89E'; ctx.font='bold 40px Inter,sans-serif'; ctx.textAlign='center';
-  ctx.fillText('indecisos.es',CX,H-80);
+  ctx.fillText('indecisos.org',CX,H-80);
   ctx.font='36px Inter,sans-serif';
   ctx.fillText('Descubre tu afinidad política',CX,H-30);
 
@@ -529,7 +529,7 @@ async function downloadPDF() {
     const pageH=pdf.internal.pageSize.getHeight();
     pdf.addImage(imgData,'PNG',10,Math.max(10,(pageH-imgH)/2),imgW,imgH);
     pdf.setFontSize(8); pdf.setTextColor(150,140,130);
-    pdf.text('indecisos.es · Orientación de voto sin etiquetas',105,pageH-8,{align:'center'});
+    pdf.text('indecisos.org · Orientación de voto sin etiquetas',105,pageH-8,{align:'center'});
     pdf.save('mi-resultado-indecisos.pdf');
   } catch(e){ alert('Error: '+e.message); }
   btn.textContent='📄 Descargar PDF'; btn.disabled=false;

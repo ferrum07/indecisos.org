@@ -1,5 +1,5 @@
 // ============================================
-// indecisos.es — Test General Nacional
+// indecisos.org — Test General Nacional
 // 100 preguntas · 4 partidos (PSOE, Sumar, PP, Vox)
 // En cada sesión se seleccionan 20 al azar
 // ============================================

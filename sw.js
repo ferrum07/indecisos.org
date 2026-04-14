@@ -1,4 +1,4 @@
-// sw.js — indecisos.es Service Worker
+// sw.js — indecisos.org Service Worker
 const CACHE = 'indecisos-v1';
 const ASSETS = [
   '/',
