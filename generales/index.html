@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test General — indecisos.org</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <!-- Librerías para descargar resultados -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link rel="icon" type="image/png" sizes="96x96" href="../favicon-96x96.png">
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png">
+    <link rel="manifest" href="../site.webmanifest">
+    <link rel="stylesheet" href="../styles.css">
+  <!-- SEO -->
+  <meta name="description" content="Test General Nacional: descubre qué partido (PP, PSOE, Vox, Sumar) se alinea más con tus ideas. 20 preguntas aleatorias, 100% anónimo.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://indecisos.org/generales/">
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://indecisos.org/generales/">
+  <meta property="og:title" content="Test General Nacional — indecisos.org">
+  <meta property="og:description" content="20 preguntas aleatorias sobre propuestas reales. Descubre con qué partido coincides más, sin sesgos y sin ver los partidos.">
+  <meta property="og:image" content="https://indecisos.org/og-image.png">
+  <meta property="og:locale" content="es_ES">
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Test General Nacional — indecisos.org">
+  <meta name="twitter:description" content="20 preguntas aleatorias. Descubre con qué partido coincides más. 100% anónimo.">
+  <meta name="twitter:image" content="https://indecisos.org/og-image.png">
+  <!-- Analytics: sustituir TU-DOMINIO por indecisos.org una vez configurado en plausible.io -->
+  <script defer data-domain="indecisos.org" src="https://plausible.io/js/script.js"></script>
+</head>
+<body>
+    <nav class="site-nav">
+        <a href="../index.html" class="nav-logo">indecisos<span>.org</span></a>
+        <a href="../index.html" class="nav-link">← Volver</a>
+    </nav>
+
+    <!-- Pantalla de Inicio del Test -->
+    <section id="hero-section" class="hero wrap">
+        <span class="hero-badge">Nacional · 20 preguntas aleatorias</span>
+        <h1>Test General</h1>
+        <p>Descubre qué partido nacional se alinea más con tus ideas.<br>Responde sin sesgos y obtén tu resultado al instante.</p>
+        
+        <div class="how-it-works">
+            <div class="how-step">
+                <span class="step-icon">📝</span>
+                20 preguntas seleccionadas al azar
+            </div>
+            <div class="how-step">
+                <span class="step-icon">🔒</span>
+                100% anónimo, sin guardar datos
+            </div>
+            <div class="how-step">
+                <span class="step-icon">📊</span>
+                Resultados con porcentajes
+            </div>
+        </div>
+
+        <button class="btn-start" onclick="startQuiz()">Comenzar Test →</button>
+        <p class="start-sub">⏱️ Tiempo estimado: 3 minutos</p>
+    </section>
+
+    <!-- Pantalla del Cuestionario -->
+    <section id="step-quiz" class="wrap hidden">
+        <div class="card">
+            <div class="progress-wrap">
+                <div class="progress-track"><div id="pfill" class="progress-fill" style="width:0%"></div></div>
+                <div id="plabel" class="progress-label">1 / 30</div>
+            </div>
+            <div class="topic-chip" id="tchip">Tema</div>
+            <div class="proposal-box">
+                <p id="qtext" class="proposal-text">Cargando pregunta...</p>
+            </div>
+            <div class="vote-grid">
+                <button id="btn-agree" class="vote-btn agree" onclick="pick(0)" role="radio" aria-pressed="false">
+                    <span class="v-icon">✓</span>
+                    <span class="v-label">De acuerdo</span>
+                </button>
+                <button id="btn-abstain" class="vote-btn abstain" onclick="pick(2)" role="radio" aria-pressed="false">
+                    <span class="v-icon">-</span>
+                    <span class="v-label">Neutral</span>
+                </button>
+                <button id="btn-against" class="vote-btn against" onclick="pick(1)" role="radio" aria-pressed="false">
+                    <span class="v-icon">✕</span>
+                    <span class="v-label">En contra</span>
+                </button>
+            </div>
+                        <p class="keyboard-hint" id="kb-hint" style="display:none"><kbd>1</kbd> A favor &nbsp; <kbd>2</kbd> En contra &nbsp; <kbd>3</kbd> Abstención &nbsp; <kbd>Enter</kbd> Siguiente</p>
+            <div class="nav">
+                <button id="bprev" class="btn-prev" style="display:none">← Anterior</button>
+                <button id="bnext" class="btn-next" disabled>Siguiente →</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pantalla de Resultados -->
+    <section id="step-results" class="wrap hidden">
+        <div id="results-snapshot" class="card">
+            <div class="results-header">
+                <span class="badge">Tu Resultado</span>
+                <h2>Afinidad Política</h2>
+            </div>
+            <div id="rlist" class="results-list"></div>
+            <div class="snapshot-footer">indecisos.org — Orienta tu voto sin etiquetas</div>
+        </div>
+        
+        <div class="download-actions">
+            <button id="btn-download-img" class="btn-download" onclick="downloadImage()">📷 Descargar Imagen</button>
+            <button id="btn-download-pdf" class="btn-download" onclick="downloadPDF()">📄 Descargar PDF</button>
+            <button id="btn-download-stories" class="btn-download" onclick="downloadStories()">📱 Stories (9:16)</button>
+        </div>
+        <button class="btn-restart" onclick="restartQuiz()">↻ Hacer otro test</button>
+        <p class="disclaimer">Resultado orientativo sin validez legal.</p>
+    </section>
+
+    <!-- Carga primero los datos, luego el motor -->
+    <script src="app.js"></script>
+    <script src="../quiz-engine.js"></script>
+<footer class="site-footer"><p>indecisos.org · <a href="../aviso-legal.html">Aviso Legal</a> · <a href="../como-funciona.html">¿Cómo funciona?</a></p></footer>
+<script>if("serviceWorker" in navigator){navigator.serviceWorker.register("/sw.js").catch(()=>{})}</script>
+</body>
+</html>
