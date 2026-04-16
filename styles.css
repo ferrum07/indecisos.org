@@ -434,10 +434,8 @@ body {
   border-radius: var(--radius-md); font-family: inherit; font-size: 0.9rem; font-weight: 700;
   text-decoration: none; cursor: pointer; border: none; transition: background 0.2s, transform 0.2s; white-space: nowrap;
 }
-.btn-donate--paypal { background: #003087; color: #fff; }
-.btn-donate--paypal:hover { background: #001f5c; transform: translateY(-1px); }
-.btn-donate--stripe { background: #635BFF; color: #fff; }
-.btn-donate--stripe:hover { background: #4f47e0; transform: translateY(-1px); }
+.btn-donate--kofi { background: #FF5E5B; color: #fff; }
+.btn-donate--kofi:hover { background: #e04a47; transform: translateY(-1px); }
 .donation-note { font-size: 0.75rem; color: var(--muted); margin-top: var(--space-sm); }
 
 /* Badge siempre en bloque, centrado */
